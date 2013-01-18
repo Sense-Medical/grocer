@@ -11,7 +11,7 @@ module Grocer
     end
 
     def read_reply
-      buf = @connection.read(Reply::LENGTH)
+      buf = @connection.read_nonblock(Reply::LENGTH)
       return Reply.new(buf)
     rescue IO::WaitReadable
       # Reading would block, that means there is nothing to read yet
